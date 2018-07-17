@@ -1,192 +1,189 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
+	<style>
+		body{
+			width:100%;
+			height:100%;
+			margin-top:100px;
+			left:0px;
+			background: linear-gradient(-90deg, #0F2027, #203A43,#2C5364);
+		}
+	</style>
 </head>
-<body style="padding-top: 65px; background-color:#262324;" align="center">
+<body align="center" />
+		<canvas id="fibonacciClock"  width="800" height="500" style="border:5px solid #000000;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
 
-
-	<canvas id="fibonacciClock" width="800" height="500" style="border:5px solid #000000;">
-	Your browser does not support the HTML5 canvas tag.</canvas>
-
+		<h1 id="time"> </h1>
 
 	<script>
-
-	var d = new Date();
-	hour = d.getHours();
-	if (hour > 12){
-		hour = hour-12;
-	}
-	if (hour == 0){
-		hour = 12;
-	}
-	mins = (Math.floor((d.getMinutes())/5))*5;
-	console.log(hour+':'+mins);
-
-	var t1 = hours(hour);
-	var t2 = minutes (mins);
-	var pixel = [0,0,0,0,0];
-
-	for (var i = 0;i<5;i++){
-		if(t1[i] == t2[i] && t1[i] == 1){
-			t1[i] = 3;
-			t2[i] = 3;
-			pixel[i] = '#3366FF';
+		var date = new Date();
+		hour = date.getHours();
+		if (hour > 12){
+			hour = hour-12;
 		}
-		if(t1[i] == t2[i] && t1[i] == 0){
-			pixel[i] = '#FFFFFF';
-		}	
-		if(t1[i] == 1 && t2[i] == 0){
-			pixel[i] = '#FF3333';
+		if (hour == 0){
+			hour = 12;
 		}
-		if(t1[i] == 0 && t2[i] == 1){
-			pixel[i] = '#33CC33';
-		}	 
-	}
-	console.log(t1+':'+t2);
+		mins = (Math.floor((date.getMinutes())/5))*5;
 
-	function hours(hr){
-		switch(hr){
-			case 1:
-				var t1 = [1,0,0,0,0];
-				break;
-			case 2:
-				var t1 = [0,0,1,0,0];
-				break;
-			case 3:
-				var t1 = [0,0,0,1,0];
-				break;
-			case 4:
-				var t1 = [1,1,1,0,0];
-				break;
-			case 5:
-				var t1 = [,0,0,0,1];
-				break;
-			case 6:
-				var t1 = [1,0,1,1,0];
-				break;
-			case 7:
-				var t1 = [0,0,1,0,1];
-				break;
-			case 8:
-				var t1 = [0,0,0,1,1];
-				break;
-			case 9:
-				var t1 = [1,1,1,0,1];
-				break;
-			case 10:
-				var t1 = [0,0,1,1,1];
-				break;
-			case 11:
-				var t1 = [1,0,1,1,1];
-				break;
-			case 12:
-				var t1 = [1,1,1,1,1];
-				break;
+		var time = hour+':'+mins;
+		document.getElementById("time").innerHTML = time;
+
+		console.log(time);
+		var t1 = hours(hour);
+		var t2 = minutes (mins);
+		var pixel = [0,0,0,0,0];
+		for (var i = 0;i<5;i++){
+			if(t1[i] == t2[i] && t1[i] == 1){
+				t1[i] = 3;
+				t2[i] = 3;
+				pixel[i] = '#3366FF';
+			}
+			if(t1[i] == t2[i] && t1[i] == 0){
+				pixel[i] = '#FFFFFF';
+			}	
+			if(t1[i] == 1 && t2[i] == 0){
+				pixel[i] = '#FF3333';
+			}
+			if(t1[i] == 0 && t2[i] == 1){
+				pixel[i] = '#33CC33';
+			}	 
 		}
-		return t1;
-	}
-
-	function minutes(min){
-		switch(min){
-			case 0:
-				var t2 = [0,0,0,0,0];
-				break;
-			case 5:
-				var t2 = [1,0,0,0,0];			
-				break;
-			case 10:
-				var t2 = [0,0,1,0,0];
-				break;
-			case 15:
-				var t2 = [0,0,0,1,0];
-				break;
-			case 20:
-				var t2 = [1,1,1,0,0];
-				break;
-			case 25:
-				var t2 = [0,0,0,0,1];
-				break;
-			case 30:
-				var t2 = [1,0,1,1,0];
-				break;
-			case 35:
-				var t2 = [0,0,1,0,1];
-				break;
-			case 40:
-				var t2 = [0,0,0,1,1];
-				break;
-			case 45:
-				var t2 = [1,1,1,0,1];
-				break;
-			case 50:
-				var t2 = [0,0,1,1,1];
-				break;
-			case 55:
-				var t2 = [1,0,1,1,1];
-				break;
+		console.log(t1+':'+t2);
+		function hours(hr){
+			switch(hr){
+				case 1:
+					var t1 = [1,0,0,0,0];
+					break;
+				case 2:
+					var t1 = [0,0,1,0,0];
+					break;
+				case 3:
+					var t1 = [0,0,0,1,0];
+					break;
+				case 4:
+					var t1 = [1,1,1,0,0];
+					break;
+				case 5:
+					var t1 = [,0,0,0,1];
+					break;
+				case 6:
+					var t1 = [1,0,1,1,0];
+					break;
+				case 7:
+					var t1 = [0,0,1,0,1];
+					break;
+				case 8:
+					var t1 = [0,0,0,1,1];
+					break;
+				case 9:
+					var t1 = [1,1,1,0,1];
+					break;
+				case 10:
+					var t1 = [0,0,1,1,1];
+					break;
+				case 11:
+					var t1 = [1,0,1,1,1];
+					break;
+				case 12:
+					var t1 = [1,1,1,1,1];
+					break;
+			}
+			return t1;
 		}
-		return t2;
-	}
-
-
-	var c = document.getElementById("fibonacciClock");
-	var ctx = c.getContext("2d");
-
-	/*Pixel 1*/
-	ctx.beginPath();
-    ctx.rect(200, 100, 100, 100);
-    ctx.fillStyle = pixel[0];
-    ctx.fill();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
-
-	/*Pixel 2*/
-	ctx.beginPath();
-    ctx.rect(200, 0, 100, 100);
-    ctx.fillStyle = pixel[1];
-    ctx.fill();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
-
-	/*Pixel 3*/
-	ctx.beginPath();
-    ctx.rect(0, 0, 200, 200);
-    ctx.fillStyle = pixel[2];
-    ctx.fill();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
-
-	/*Pixel 4*/
-	ctx.beginPath();
-    ctx.rect(0, 200, 300, 300);
-    ctx.fillStyle = pixel[3];
-    ctx.fill();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
-
-	/*Pixel 5*/
-	ctx.beginPath();
-    ctx.rect(300, 0, 500, 500);
-    ctx.fillStyle = pixel[4];
-    ctx.fill();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
-
-
+		function minutes(min){
+			switch(min){
+				case 0:
+					var t2 = [0,0,0,0,0];
+					break;
+				case 5:
+					var t2 = [1,0,0,0,0];			
+					break;
+				case 10:
+					var t2 = [0,0,1,0,0];
+					break;
+				case 15:
+					var t2 = [0,0,0,1,0];
+					break;
+				case 20:
+					var t2 = [1,1,1,0,0];
+					break;
+				case 25:
+					var t2 = [0,0,0,0,1];
+					break;
+				case 30:
+					var t2 = [1,0,1,1,0];
+					break;
+				case 35:
+					var t2 = [0,0,1,0,1];
+					break;
+				case 40:
+					var t2 = [0,0,0,1,1];
+					break;
+				case 45:
+					var t2 = [1,1,1,0,1];
+					break;
+				case 50:
+					var t2 = [0,0,1,1,1];
+					break;
+				case 55:
+					var t2 = [1,0,1,1,1];
+					break;
+			}
+			return t2;
+		}
+		var c = document.getElementById("fibonacciClock");
+		var ctx = c.getContext("2d");
+		/*Pixel 1*/
+		ctx.beginPath();
+		ctx.rect(200, 100, 100, 100);
+		ctx.fillStyle = pixel[0];
+		ctx.fill();
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = 'black';
+		ctx.stroke();
+		/*Pixel 2*/
+		ctx.beginPath();
+		ctx.rect(200, 0, 100, 100);
+		ctx.fillStyle = pixel[1];
+		ctx.fill();
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = 'black';
+		ctx.stroke();
+		/*Pixel 3*/
+		ctx.beginPath();
+		ctx.rect(0, 0, 200, 200);
+		ctx.fillStyle = pixel[2];
+		ctx.fill();
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = 'black';
+		ctx.stroke();
+		/*Pixel 4*/
+		ctx.beginPath();
+		ctx.rect(0, 200, 300, 300);
+		ctx.fillStyle = pixel[3];
+		ctx.fill();
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = 'black';
+		ctx.stroke();
+		/*Pixel 5*/
+		ctx.beginPath();
+		ctx.rect(300, 0, 500, 500);
+		ctx.fillStyle = pixel[4];
+		ctx.fill();
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = 'black';
+		ctx.stroke();
 	</script>
-
+	
 	<script type="text/javascript">
 	  setTimeout(function(){
 	    location = ''
 	  },60000)
 	</script>
-
 </body>
 
 </html>
